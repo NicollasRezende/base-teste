@@ -27,13 +27,14 @@
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 
         .navbar {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            padding-top: 0.7rem;
+            padding-bottom: 0.7rem;
         }
 
         .logo {
             img {
-                height: 45px;
+                height: 100%px;
+                width: 100%;
             }
 
             h3 {
@@ -65,13 +66,15 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 2rem;
             position: relative;
             z-index: z.z('navigation') + 1; // Garantir que fique acima do menu móvel
             transition: all var(--transition-normal);
 
             img {
-                height: 50px;
+                top: 15px;
+                width: 90px;
+                height: 60px;
                 filter: drop-shadow(0 0 5px rgba(v.$accent, 0.5));
                 transition: all var(--transition-normal);
             }
@@ -242,10 +245,6 @@
 
             &:hover {
                 background: rgba(v.$accent, 0.1);
-            }
-
-            &.active {
-                background: rgba(v.$accent, 0.2);
             }
 
             .hamburger-box {

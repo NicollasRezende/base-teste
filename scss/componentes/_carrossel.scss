@@ -204,8 +204,8 @@
 
         // Devices pequenos
         @media (max-width: 576px) {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             top: 40%; // Mover um pouco para cima
             background: rgba(v.$background-dark, 0.8);
 
@@ -234,8 +234,8 @@
 
         // Devices extremamente pequenos
         @media (max-width: 400px) {
-            width: 26px;
-            height: 26px;
+            width: 6px;
+            height: 6px;
             top: 30%;
 
             &::after {
@@ -288,8 +288,8 @@
         z-index: 20;
 
         button {
-            width: 14px;
-            height: 14px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background-color: rgba(v.$accent, 0.4);
             margin: 0 7px;
@@ -312,9 +312,27 @@
             bottom: 10px;
 
             button {
-                width: 10px;
-                height: 10px;
+                width: 5px;
+                height: 5px;
                 margin: 0 5px;
+            }
+        }
+        @media (max-width: 400px) {
+            bottom: 10px;
+
+            button {
+                width: 3px;
+                height: 3px;
+                margin: 0 5px;
+            }
+        }
+        @media (max-width: 450px) {
+            bottom: 10px;
+
+            button {
+                width: 3px;
+                height: 3px;
+                margin: 0 2px;
             }
         }
     }
@@ -366,8 +384,8 @@
 
             .carousel-control-prev,
             .carousel-control-next {
-                width: 50px;
-                height: 50px;
+                width: 15px;
+                height: 15px;
             }
         }
     }
