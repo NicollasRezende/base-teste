@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '../abstracts/variaveis' as v;
 @use '../abstracts/mixins' as m;
 @use '../abstracts/breakpoints' as b;
@@ -143,7 +144,16 @@
 
 // Grid de serviços
 .services-grid {
+    // Adotando a nova sintaxe com & {} para resolver o aviso
     @include m.container;
+
+    & {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        position: relative;
+        z-index: 2;
+    }
 
     @include m.respond-to('medium') {
         grid-template-columns: repeat(2, 1fr);
@@ -154,22 +164,17 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-
-    & {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2.5rem;
-        position: relative;
-        z-index: 2;
-    }
 }
 
 // Grid de características/recursos
 .features-grid {
     @include m.container;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
+
+    & {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
 
     @include m.respond-to('small') {
         grid-template-columns: repeat(2, 1fr);
@@ -180,11 +185,14 @@
 // Grid do rodapé
 .footer-grid {
     @include m.container;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid rgba(v.$accent, 0.1);
+
+    & {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid rgba(v.$accent, 0.1);
+    }
 
     @include m.respond-to('medium') {
         grid-template-columns: repeat(2, 1fr);
@@ -204,10 +212,13 @@
 // Container de contato
 .contact-container {
     @include m.container;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 4rem;
-    align-items: center;
+
+    & {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem;
+        align-items: center;
+    }
 
     @media (max-width: 992px) {
         gap: 2.5rem;

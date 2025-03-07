@@ -11,6 +11,7 @@ $accent-dark: #c07f00; // Dourado escuro
 $accent-light: #fff7d4; // Creme claro
 $text-light: #f4f6ff; // Quase branco
 $text-dark: #4c3d3d; // Marrom escuro
+$text-dark-2: #000000; // Marrom escuro
 $background-dark: #222831; // Cinza muito escuro
 $background: #393e46; // Cinza escuro
 $background-light: #eeeeee; // Cinza claro
@@ -56,6 +57,7 @@ $shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
     --background-300: #{$background-light};
     --text-100: #{$text-light};
     --text-200: #{$text-dark};
+    --text-201: #{$text-dark-2};
     --text-300: #9290c3;
 
     // Espaçamentos

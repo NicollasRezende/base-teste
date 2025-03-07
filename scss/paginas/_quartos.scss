@@ -1,11 +1,14 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    SEÇÃO DE QUARTOS
    Estilos para a seção de quartos e suítes do hotel
 ====================================================== */
 
 .rooms-section {
-    @include section-padding;
-    background: linear-gradient(to bottom, #191825, $primary-dark);
+    @include m.section-padding;
+    background: linear-gradient(to bottom, #191825, v.$primary-dark);
     position: relative;
 
     /* ======================================================
@@ -41,7 +44,7 @@
         h2 {
             margin-bottom: 1.5rem;
             display: inline-block;
-            color: $accent;
+            color: v.$accent;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             position: relative;
 
@@ -55,9 +58,9 @@
                 height: 3px;
                 background: linear-gradient(
                     to right,
-                    $accent-dark,
-                    $accent,
-                    $accent-dark
+                    v.$accent-dark,
+                    v.$accent,
+                    v.$accent-dark
                 );
             }
         }
@@ -65,17 +68,17 @@
         p {
             max-width: 600px;
             margin: 1.5rem auto 0;
-            color: $text-light;
+            color: v.$text-light;
             font-size: 1.2rem;
             line-height: 1.6;
             opacity: 0.9;
         }
 
-        @include respond-to('medium') {
+        @include m.respond-to('medium') {
             margin-bottom: 3rem;
         }
 
-        @include respond-to('small') {
+        @include m.respond-to('small') {
             margin-bottom: 2rem;
 
             h2 {
@@ -93,12 +96,15 @@
     ====================================================== */
 
     .rooms-grid {
-        @include container;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 2rem;
+        @include m.container;
 
-        @include respond-to('small') {
+        & {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        @include m.respond-to('small') {
             grid-template-columns: 1fr;
         }
     }
@@ -108,7 +114,7 @@
     ====================================================== */
 
     .room-card {
-        background: rgba($primary-dark, 0.7);
+        background: rgba(v.$primary-dark, 0.7);
         border-radius: var(--border-radius-lg);
         overflow: hidden;
         box-shadow: var(--shadow-lg);
@@ -145,7 +151,7 @@
                 background: linear-gradient(
                     to bottom,
                     transparent,
-                    rgba($background-dark, 0.5)
+                    rgba(v.$background-dark, 0.5)
                 );
                 z-index: 1;
             }
@@ -156,8 +162,8 @@
                 top: 1rem;
                 right: 1rem;
                 padding: 0.5rem 1rem;
-                background: $accent;
-                color: $text-dark;
+                background: v.$accent;
+                color: v.$text-dark;
                 font-weight: 600;
                 font-size: 0.8rem;
                 border-radius: var(--border-radius-sm);
@@ -183,13 +189,13 @@
             flex-direction: column;
 
             h3 {
-                color: $accent;
+                color: v.$accent;
                 margin-bottom: 0.5rem;
                 font-size: 1.5rem;
             }
 
             .room-description {
-                color: $text-light;
+                color: v.$text-light;
                 opacity: 0.9;
                 margin-bottom: 1rem;
             }
@@ -203,16 +209,16 @@
 
                 span {
                     padding: 0.3rem 0.8rem;
-                    background: rgba($primary-light, 0.3);
+                    background: rgba(v.$primary-light, 0.3);
                     border-radius: 20px;
                     font-size: 0.8rem;
-                    color: $text-light;
+                    color: v.$text-light;
                     display: flex;
                     align-items: center;
 
                     i {
                         margin-right: 0.4rem;
-                        color: $accent;
+                        color: v.$accent;
                         font-size: 0.9rem;
                     }
                 }
@@ -226,22 +232,22 @@
                 align-items: center;
 
                 .room-price {
-                    color: $accent-light;
+                    color: v.$accent-light;
                     font-size: 1.4rem;
                     font-weight: 700;
 
                     small {
                         display: block;
                         font-size: 0.8rem;
-                        color: rgba($text-light, 0.7);
+                        color: rgba(v.$text-light, 0.7);
                         font-weight: 400;
                     }
                 }
 
                 .btn-view {
                     background: transparent;
-                    color: $accent;
-                    border: 2px solid $accent;
+                    color: v.$accent;
+                    border: 2px solid v.$accent;
                     padding: 0.5rem 1.2rem;
                     border-radius: var(--border-radius-sm);
                     font-weight: 600;
@@ -249,8 +255,8 @@
                     transition: all var(--transition-normal);
 
                     &:hover {
-                        background: $accent;
-                        color: $text-dark;
+                        background: v.$accent;
+                        color: v.$text-dark;
                         transform: translateY(-3px);
                     }
                 }
@@ -270,7 +276,7 @@
         .carousel-indicators {
             bottom: 20px;
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 bottom: 10px;
             }
         }
@@ -289,8 +295,8 @@
 
         button {
             background: transparent;
-            color: $text-light;
-            border: 1px solid rgba($accent, 0.3);
+            color: v.$text-light;
+            border: 1px solid rgba(v.$accent, 0.3);
             padding: 0.6rem 1.5rem;
             border-radius: var(--border-radius-sm);
             cursor: pointer;
@@ -298,13 +304,13 @@
 
             &:hover,
             &.active {
-                background: $accent;
-                color: $text-dark;
-                border-color: $accent;
+                background: v.$accent;
+                color: v.$text-dark;
+                border-color: v.$accent;
             }
         }
 
-        @include respond-to('small') {
+        @include m.respond-to('small') {
             margin-bottom: 2rem;
 
             button {
@@ -341,21 +347,21 @@
         grid-template-columns: 2fr 1fr;
         gap: 2rem;
 
-        @include respond-to('medium') {
+        @include m.respond-to('medium') {
             grid-template-columns: 1fr;
         }
 
         .room-features {
-            background: rgba($primary-dark, 0.7);
+            background: rgba(v.$primary-dark, 0.7);
             padding: 2rem;
             border-radius: var(--border-radius-lg);
             height: fit-content;
 
             h4 {
-                color: $accent;
+                color: v.$accent;
                 margin-bottom: 1.5rem;
                 padding-bottom: 0.8rem;
-                border-bottom: 1px solid rgba($accent, 0.2);
+                border-bottom: 1px solid rgba(v.$accent, 0.2);
             }
 
             ul {
@@ -368,7 +374,7 @@
                     align-items: center;
 
                     i {
-                        color: $accent;
+                        color: v.$accent;
                         margin-right: 1rem;
                         font-size: 1.2rem;
                         width: 20px;
@@ -380,13 +386,13 @@
     }
 
     .booking-form {
-        background: rgba($primary-dark, 0.7);
+        background: rgba(v.$primary-dark, 0.7);
         padding: 2rem;
         border-radius: var(--border-radius-lg);
         box-shadow: var(--shadow-lg);
 
         h3 {
-            color: $accent;
+            color: v.$accent;
             margin-bottom: 1.5rem;
             text-align: center;
         }
@@ -397,13 +403,13 @@
 
             .price {
                 font-size: 2.5rem;
-                color: $accent;
+                color: v.$accent;
                 font-weight: 700;
             }
 
             small {
                 display: block;
-                color: rgba($text-light, 0.7);
+                color: rgba(v.$text-light, 0.7);
             }
         }
 
@@ -414,30 +420,30 @@
         label {
             display: block;
             margin-bottom: 0.5rem;
-            color: $text-light;
+            color: v.$text-light;
         }
 
         input,
         select {
             width: 100%;
             padding: 0.8rem;
-            background: rgba($primary, 0.2);
-            border: 1px solid rgba($accent, 0.2);
+            background: rgba(v.$primary, 0.2);
+            border: 1px solid rgba(v.$accent, 0.2);
             border-radius: var(--border-radius-sm);
-            color: $text-light;
+            color: v.$text-light;
 
             &:focus {
-                border-color: $accent;
+                border-color: v.$accent;
                 outline: none;
-                box-shadow: 0 0 0 2px rgba($accent, 0.2);
+                box-shadow: 0 0 0 2px rgba(v.$accent, 0.2);
             }
         }
 
         button {
             width: 100%;
             padding: 1rem;
-            background: $accent;
-            color: $text-dark;
+            background: v.$accent;
+            color: v.$text-dark;
             border: none;
             border-radius: var(--border-radius-sm);
             font-weight: 600;
@@ -445,8 +451,8 @@
             transition: all var(--transition-normal);
 
             &:hover {
-                background: $accent-dark;
-                color: $text-light;
+                background: v.$accent-dark;
+                color: v.$text-light;
             }
         }
     }

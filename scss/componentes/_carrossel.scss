@@ -1,3 +1,6 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    CARROSSEL
    Estilos para carrosséis e sliders do site
@@ -21,9 +24,9 @@
         height: 6px;
         background: linear-gradient(
             to right,
-            $accent-dark,
-            $accent,
-            $accent-dark
+            v.$accent-dark,
+            v.$accent,
+            v.$accent-dark
         );
         z-index: 10;
         border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
@@ -47,9 +50,9 @@
             height: 100%;
             background: linear-gradient(
                 to bottom,
-                rgba($background-dark, 0.2),
+                rgba(v.$background-dark, 0.2),
                 transparent 40%,
-                rgba($background-dark, 0.6)
+                rgba(v.$background-dark, 0.6)
             );
             z-index: 1;
         }
@@ -72,9 +75,9 @@
       ====================================================== */
 
         .carousel-caption {
-            background: rgba($background-dark, 0.85) !important;
+            background: rgba(v.$background-dark, 0.85) !important;
             padding: 2.5rem;
-            border-left: 5px solid $accent;
+            border-left: 5px solid v.$accent;
             max-width: 520px;
             bottom: 2.5rem;
             left: 2.5rem;
@@ -95,7 +98,7 @@
 
             // Título da legenda
             h3 {
-                color: $accent;
+                color: v.$accent;
                 margin-bottom: 1rem;
                 font-size: 2rem;
                 position: relative;
@@ -108,7 +111,7 @@
                     left: 0;
                     width: 40px;
                     height: 2px;
-                    background: rgba($accent, 0.5);
+                    background: rgba(v.$accent, 0.5);
                     transition: width var(--transition-normal);
                 }
             }
@@ -119,7 +122,7 @@
 
             // Descrição da legenda
             p {
-                color: $text-light;
+                color: v.$text-light;
                 margin-bottom: 1.5rem;
                 font-size: 1.1rem;
                 line-height: 1.6;
@@ -129,7 +132,7 @@
             .price {
                 display: flex;
                 align-items: center;
-                color: $accent-light;
+                color: v.$accent-light;
                 font-size: 1.7rem;
                 margin-top: 1.5rem;
                 font-weight: 700;
@@ -139,7 +142,7 @@
                     display: inline-block;
                     width: 20px;
                     height: 2px;
-                    background: $accent;
+                    background: v.$accent;
                     margin-right: 10px;
                 }
             }
@@ -149,8 +152,8 @@
                 display: inline-block;
                 margin-top: 1rem;
                 background: transparent;
-                color: $accent;
-                border: 2px solid $accent;
+                color: v.$accent;
+                border: 2px solid v.$accent;
                 padding: 0.5rem 1.5rem;
                 border-radius: var(--border-radius-sm);
                 font-weight: 600;
@@ -158,8 +161,8 @@
                 text-decoration: none;
 
                 &:hover {
-                    background: $accent;
-                    color: $text-dark;
+                    background: v.$accent;
+                    color: v.$text-dark;
                     transform: translateY(-2px);
                 }
             }
@@ -175,7 +178,7 @@
         z-index: 30; // Garantir que fiquem acima dos cards
         width: 50px;
         height: 50px;
-        background: rgba($background-dark, 0.6);
+        background: rgba(v.$background-dark, 0.6);
         border-radius: 50%;
         opacity: 0.8;
         top: 50%;
@@ -183,7 +186,7 @@
         transition: all var(--transition-normal);
 
         &:hover {
-            background: rgba($accent-dark, 0.8);
+            background: rgba(v.$accent-dark, 0.8);
             transform: translateY(-50%) scale(1.1);
             opacity: 1;
         }
@@ -204,7 +207,7 @@
             width: 35px;
             height: 35px;
             top: 40%; // Mover um pouco para cima
-            background: rgba($background-dark, 0.8);
+            background: rgba(v.$background-dark, 0.8);
 
             &::after {
                 width: 12px;
@@ -288,19 +291,19 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background-color: rgba($accent, 0.4);
+            background-color: rgba(v.$accent, 0.4);
             margin: 0 7px;
             opacity: 0.7;
             transition: all var(--transition-normal);
 
             &.active {
-                background-color: $accent;
+                background-color: v.$accent;
                 transform: scale(1.2);
                 opacity: 1;
             }
 
             &:hover {
-                background-color: $accent;
+                background-color: v.$accent;
                 opacity: 0.9;
             }
         }
@@ -321,7 +324,7 @@
     ====================================================== */
 
     // Dispositivos grandes
-    @include respond-to('large') {
+    @include m.respond-to('large') {
         .carousel-item {
             height: 500px;
 
@@ -337,7 +340,7 @@
     }
 
     // Dispositivos médios
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         .carousel-item {
             height: 450px;
 
@@ -370,7 +373,7 @@
     }
 
     // Dispositivos pequenos
-    @include respond-to('small') {
+    @include m.respond-to('small') {
         .carousel-item {
             height: 350px;
 
@@ -406,7 +409,7 @@
   ====================================================== */
 
 .testimonials-slider {
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         flex-direction: column;
 
         .testimonial-card {

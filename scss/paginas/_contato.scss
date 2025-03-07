@@ -1,18 +1,21 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    SEÇÃO DE CONTATO
    Estilos para a seção de contato do hotel
 ====================================================== */
 
 .contact-section {
-    @include section-padding;
-    background: linear-gradient(to bottom, $background, $background-dark);
+    @include m.section-padding;
+    background: linear-gradient(to bottom, v.$background, v.$background-dark);
 
     /* ======================================================
        CONTAINER DE CONTATO
     ====================================================== */
 
     .contact-container {
-        @include container;
+        @include m.container;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 4rem;
@@ -40,7 +43,7 @@
 
         .contact-info {
             h2 {
-                color: $accent;
+                color: v.$accent;
                 margin-bottom: 1.5rem;
 
                 @media (max-width: 768px) {
@@ -54,7 +57,7 @@
             }
 
             p {
-                color: $text-light;
+                color: v.$text-light;
                 font-size: 1.1rem;
                 margin-bottom: 2rem;
 
@@ -82,7 +85,7 @@
                 }
 
                 div {
-                    color: $text-light;
+                    color: v.$text-light;
                     margin-bottom: 1.2rem;
                     display: flex;
                     align-items: center;
@@ -97,7 +100,7 @@
                     }
 
                     i {
-                        color: $accent;
+                        color: v.$accent;
                         margin-right: 1rem;
                         font-size: 1.2rem;
                         width: 24px;
@@ -117,7 +120,7 @@
                 margin-top: 2.5rem;
 
                 h4 {
-                    color: $accent;
+                    color: v.$accent;
                     margin-bottom: 1rem;
                     font-size: 1.2rem;
                 }
@@ -132,14 +135,14 @@
                         justify-content: center;
                         width: 40px;
                         height: 40px;
-                        background: rgba($primary-light, 0.2);
+                        background: rgba(v.$primary-light, 0.2);
                         border-radius: 50%;
-                        color: $text-light;
+                        color: v.$text-light;
                         transition: all var(--transition-normal);
 
                         &:hover {
-                            background: $accent;
-                            color: $text-dark;
+                            background: v.$accent;
+                            color: v.$text-dark;
                             transform: translateY(-3px);
                         }
                     }
@@ -151,7 +154,7 @@
                 margin-top: 2.5rem;
 
                 h4 {
-                    color: $accent;
+                    color: v.$accent;
                     margin-bottom: 1rem;
                     font-size: 1.2rem;
                 }
@@ -165,7 +168,7 @@
                         justify-content: space-between;
                         margin-bottom: 0.5rem;
                         padding-bottom: 0.5rem;
-                        border-bottom: 1px dashed rgba($accent, 0.2);
+                        border-bottom: 1px dashed rgba(v.$accent, 0.2);
 
                         &:last-child {
                             border-bottom: none;
@@ -186,11 +189,11 @@
       ====================================================== */
 
         .contact-form {
-            background: rgba($primary-dark, 0.3);
+            background: rgba(v.$primary-dark, 0.3);
             padding: 2.5rem;
             border-radius: var(--border-radius-lg);
             box-shadow: var(--shadow-lg);
-            border: 1px solid rgba($accent, 0.1);
+            border: 1px solid rgba(v.$accent, 0.1);
             display: grid;
             gap: 1.2rem;
 
@@ -236,12 +239,12 @@
     ====================================================== */
 
     .contact-map {
-        @include container;
+        @include m.container;
         margin-top: 5rem;
 
         h3 {
             text-align: center;
-            color: $accent;
+            color: v.$accent;
             margin-bottom: 2rem;
 
             @media (max-width: 768px) {
@@ -255,7 +258,7 @@
             border-radius: var(--border-radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            border: 1px solid rgba($accent, 0.2);
+            border: 1px solid rgba(v.$accent, 0.2);
 
             iframe {
                 width: 100%;
@@ -279,12 +282,12 @@
     ====================================================== */
 
     .contact-faq {
-        @include container;
+        @include m.container;
         margin-top: 5rem;
 
         h3 {
             text-align: center;
-            color: $accent;
+            color: v.$accent;
             margin-bottom: 2rem;
 
             @media (max-width: 768px) {
@@ -295,10 +298,10 @@
 
         .accordion {
             .accordion-item {
-                background: rgba($primary-dark, 0.3);
+                background: rgba(v.$primary-dark, 0.3);
                 border-radius: var(--border-radius-md);
                 margin-bottom: 1rem;
-                border: 1px solid rgba($accent, 0.1);
+                border: 1px solid rgba(v.$accent, 0.1);
                 overflow: hidden;
 
                 &:last-child {
@@ -310,9 +313,9 @@
                         width: 100%;
                         text-align: left;
                         padding: 1.2rem;
-                        background: rgba($primary, 0.2);
+                        background: rgba(v.$primary, 0.2);
                         border: none;
-                        color: $text-light;
+                        color: v.$text-light;
                         font-weight: 600;
                         display: flex;
                         justify-content: space-between;
@@ -322,8 +325,8 @@
 
                         &:hover,
                         &[aria-expanded='true'] {
-                            background: rgba($primary, 0.4);
-                            color: $accent;
+                            background: rgba(v.$primary, 0.4);
+                            color: v.$accent;
                         }
 
                         &::after {
@@ -341,8 +344,8 @@
 
                 .accordion-body {
                     padding: 1.2rem;
-                    color: $text-light;
-                    border-top: 1px solid rgba($accent, 0.1);
+                    color: v.$text-light;
+                    border-top: 1px solid rgba(v.$accent, 0.1);
 
                     p:last-child {
                         margin-bottom: 0;
@@ -369,12 +372,12 @@
     ====================================================== */
 
     .contact-cta {
-        @include container;
+        @include m.container;
         margin-top: 5rem;
         text-align: center;
 
         h3 {
-            color: $accent;
+            color: v.$accent;
             margin-bottom: 1.5rem;
             font-size: 2rem;
 

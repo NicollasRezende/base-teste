@@ -1,11 +1,14 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    SEÇÃO DE SERVIÇOS
    Estilos para a seção de serviços do hotel
 ====================================================== */
 
 .services-section {
-    @include section-padding;
-    background: linear-gradient(to bottom, $background-dark, #191825);
+    @include m.section-padding;
+    background: linear-gradient(to bottom, v.$background-dark, #191825);
     position: relative;
 
     /* ======================================================
@@ -39,7 +42,7 @@
         z-index: 2;
 
         h2 {
-            color: $accent;
+            color: v.$accent;
             display: inline-block;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
@@ -47,9 +50,9 @@
                 height: 3px;
                 background: linear-gradient(
                     to right,
-                    $accent,
+                    v.$accent,
                     #865dff,
-                    $accent
+                    v.$accent
                 );
             }
         }
@@ -57,12 +60,12 @@
         p {
             max-width: 600px;
             margin: 1rem auto 0;
-            color: $text-light;
+            color: v.$text-light;
             font-size: 1.1rem;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
-        @include respond-to('medium') {
+        @include m.respond-to('medium') {
             margin-bottom: 3rem;
 
             p {
@@ -71,7 +74,7 @@
             }
         }
 
-        @include respond-to('small') {
+        @include m.respond-to('small') {
             margin-bottom: 2rem;
 
             h2 {
@@ -89,19 +92,21 @@
     ====================================================== */
 
     .services-grid {
-        @include container;
+        @include m.container;
+
+        // Propriedades base (antes de qualquer regra aninhada)
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2.5rem;
         position: relative;
         z-index: 2;
 
-        @include respond-to('medium') {
+        @include m.respond-to('medium') {
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
-        @include respond-to('small') {
+        @include m.respond-to('small') {
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
@@ -128,16 +133,16 @@
     ====================================================== */
 
     .additional-services {
-        @include container;
+        @include m.container;
         margin-top: 4rem;
 
         h3 {
-            color: $accent;
+            color: v.$accent;
             text-align: center;
             margin-bottom: 2rem;
             font-size: 1.8rem;
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 font-size: 1.5rem;
                 margin-bottom: 1.5rem;
             }
@@ -149,28 +154,28 @@
             gap: 1.5rem;
 
             .service-item {
-                background: rgba($primary-dark, 0.5);
+                background: rgba(v.$primary-dark, 0.5);
                 padding: 1.2rem;
                 border-radius: var(--border-radius-md);
                 display: flex;
                 align-items: center;
                 transition: all var(--transition-normal);
-                border-left: 3px solid rgba($accent, 0.5);
+                border-left: 3px solid rgba(v.$accent, 0.5);
 
                 &:hover {
-                    background: rgba($primary-dark, 0.8);
+                    background: rgba(v.$primary-dark, 0.8);
                     transform: translateX(5px);
-                    border-left-color: $accent;
+                    border-left-color: v.$accent;
                 }
 
                 i {
-                    color: $accent;
+                    color: v.$accent;
                     font-size: 1.5rem;
                     margin-right: 1rem;
                 }
 
                 span {
-                    color: $text-light;
+                    color: v.$text-light;
                 }
             }
         }
@@ -181,11 +186,11 @@
     ====================================================== */
 
     .service-pricing {
-        @include container;
+        @include m.container;
         margin-top: 4rem;
 
         h3 {
-            color: $accent;
+            color: v.$accent;
             text-align: center;
             margin-bottom: 2rem;
         }
@@ -193,20 +198,20 @@
         .pricing-table {
             width: 100%;
             border-collapse: collapse;
-            background: rgba($primary-dark, 0.5);
+            background: rgba(v.$primary-dark, 0.5);
             border-radius: var(--border-radius-lg);
             overflow: hidden;
 
             th,
             td {
                 padding: 1rem 1.5rem;
-                border-bottom: 1px solid rgba($accent, 0.1);
+                border-bottom: 1px solid rgba(v.$accent, 0.1);
             }
 
             th {
-                background: rgba($primary, 0.3);
+                background: rgba(v.$primary, 0.3);
                 text-align: left;
-                color: $accent;
+                color: v.$accent;
                 font-weight: 600;
             }
 
@@ -215,27 +220,27 @@
             }
 
             tr:hover td {
-                background: rgba($primary, 0.1);
+                background: rgba(v.$primary, 0.1);
             }
 
             .service-name {
-                color: $text-light;
+                color: v.$text-light;
                 font-weight: 500;
             }
 
             .service-description {
-                color: rgba($text-light, 0.8);
+                color: rgba(v.$text-light, 0.8);
                 font-size: 0.9rem;
             }
 
             .service-price {
-                color: $accent-light;
+                color: v.$accent-light;
                 font-weight: 600;
                 text-align: right;
             }
         }
 
-        @include respond-to('small') {
+        @include m.respond-to('small') {
             .pricing-table {
                 display: block;
                 overflow-x: auto;
@@ -257,16 +262,29 @@
         margin-top: 3rem;
 
         .btn-services {
-            @extend .btn-secondary;
+            background: transparent;
+            color: v.$accent;
+            border: 2px solid v.$accent;
             padding: 0.8rem 2rem;
+            border-radius: var(--border-radius-md);
+            transition: all var(--transition-normal);
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
 
             i {
                 margin-left: 0.5rem;
                 transition: transform var(--transition-normal);
             }
 
-            &:hover i {
-                transform: translateX(5px);
+            &:hover {
+                background: rgba(v.$accent, 0.1);
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-md);
+
+                i {
+                    transform: translateX(5px);
+                }
             }
         }
     }
@@ -276,18 +294,18 @@
     ====================================================== */
 
     .service-booking {
-        @include container;
+        @include m.container;
         margin-top: 5rem;
 
         .booking-wrapper {
-            background: rgba($primary-dark, 0.7);
+            background: rgba(v.$primary-dark, 0.7);
             padding: 2.5rem;
             border-radius: var(--border-radius-lg);
             box-shadow: var(--shadow-lg);
-            border: 1px solid rgba($accent, 0.1);
+            border: 1px solid rgba(v.$accent, 0.1);
 
             h3 {
-                color: $accent;
+                color: v.$accent;
                 text-align: center;
                 margin-bottom: 2rem;
             }
@@ -297,7 +315,7 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
 
-                @include respond-to('small') {
+                @include m.respond-to('small') {
                     grid-template-columns: 1fr;
                     gap: 1rem;
                 }
@@ -306,7 +324,7 @@
                     &.full-width {
                         grid-column: span 2;
 
-                        @include respond-to('small') {
+                        @include m.respond-to('small') {
                             grid-column: span 1;
                         }
                     }
@@ -315,8 +333,8 @@
                 button {
                     grid-column: span 2;
                     padding: 1rem;
-                    background: $accent;
-                    color: $text-dark;
+                    background: v.$accent;
+                    color: v.$text-dark;
                     border: none;
                     border-radius: var(--border-radius-md);
                     font-weight: 600;
@@ -324,21 +342,21 @@
                     transition: all var(--transition-normal);
 
                     &:hover {
-                        background: $accent-dark;
-                        color: $text-light;
+                        background: v.$accent-dark;
+                        color: v.$text-light;
                     }
 
-                    @include respond-to('small') {
+                    @include m.respond-to('small') {
                         grid-column: span 1;
                     }
                 }
             }
 
-            @include respond-to('medium') {
+            @include m.respond-to('medium') {
                 padding: 2rem;
             }
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 padding: 1.5rem;
             }
         }

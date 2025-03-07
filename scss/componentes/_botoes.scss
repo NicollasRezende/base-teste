@@ -1,3 +1,6 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    BOTÕES
 ====================================================== */
@@ -23,14 +26,14 @@
 // Botão principal
 .btn-primary {
   @extend %btn-base;
-  background: $accent;
-  color: $text-dark;
+  background: v.$accent;
+  color: v.$text-dark;
   text-transform: uppercase;
   letter-spacing: 1px;
 
   &:hover {
-    background: $accent-dark;
-    color: $text-light;
+    background: v.$accent-dark;
+    color: v.$text-light;
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
   }
@@ -50,15 +53,15 @@
     font-size: 1.1rem;
   }
   
-  @include respond-to('tablet') {
+  @include m.respond-to('tablet') {
     padding: 0.9rem 1.8rem;
   }
   
-  @include respond-to('mobile') {
+  @include m.respond-to('mobile') {
     width: 100%;
   }
   
-  @include respond-to('small-mobile') {
+  @include m.respond-to('small-mobile') {
     padding: 0.8rem 1.5rem;
     font-size: 0.9rem;
     border-radius: var(--border-radius-sm);
@@ -70,11 +73,11 @@
 .btn-secondary {
   @extend %btn-base;
   background: transparent;
-  color: $accent;
-  border: 2px solid $accent;
+  color: v.$accent;
+  border: 2px solid v.$accent;
   
   &:hover {
-    background: rgba($accent, 0.1);
+    background: rgba(v.$accent, 0.1);
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
   }
@@ -88,13 +91,13 @@
 .btn-text {
   @extend %btn-base;
   background: transparent;
-  color: $accent;
+  color: v.$accent;
   padding: 0.5rem 0.8rem;
   box-shadow: none;
   
   &:hover {
-    color: $accent-dark;
-    background: rgba($accent, 0.1);
+    color: v.$accent-dark;
+    background: rgba(v.$accent, 0.1);
     transform: translateY(-2px);
   }
   
@@ -134,10 +137,10 @@
 // Botão fixado na navegação (ex: "Reservar Agora")
 .book-now a {
   @extend %btn-base;
-  background: $accent;
-  color: $text-dark;
+  background: v.$accent-dark;
+  color: v.$background-dark;
   padding: 0.8rem 1.8rem;
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-sm);
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.9rem;
@@ -154,13 +157,13 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: $accent-dark;
+    background: v.$accent-dark;
     transition: all var(--transition-normal);
     z-index: -1;
   }
   
   &:hover {
-    color: $text-light;
+    color: v.$text-dark;
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     
@@ -169,7 +172,7 @@
     }
   }
   
-  @include respond-to('medium') {
+  @include m.respond-to('medium') {
     padding: 1rem 2.5rem;
     font-size: 1rem;
   }
@@ -178,9 +181,9 @@
 // Botão de enviar formulário
 .contact-form button, 
 .footer-newsletter form button {
-  @include hover-lift;
-  background: $accent;
-  color: $text-dark;
+  @include m.hover-lift;
+  background: v.$accent;
+  color: v.$text-dark;
   border: none;
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--border-radius-md);
@@ -190,22 +193,7 @@
   letter-spacing: 1px;
   
   &:hover {
-    background: $accent-dark;
-    color: $text-light;
-  }
-  
-  @include respond-to('tablet') {
-    padding: 0.9rem 1.8rem;
-  }
-  
-  @include respond-to('mobile') {
-    width: 100%;
-  }
-  
-  @include respond-to('small-mobile') {
-    padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
-    border-radius: var(--border-radius-sm);
-    letter-spacing: 0.5px;
+    background: v.$accent-dark;
+    color: v.$text-light;
   }
 }

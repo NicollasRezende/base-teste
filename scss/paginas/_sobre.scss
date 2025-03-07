@@ -1,14 +1,17 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    SEÇÃO SOBRE
    Estilos para a seção "Sobre" do hotel
 ====================================================== */
 
 .about-section {
-    @include section-padding;
+    @include m.section-padding;
     background: linear-gradient(
         to bottom,
-        $background-dark,
-        rgba($primary-dark, 0.9)
+        v.$background-dark,
+        rgba(v.$primary-dark, 0.9)
     );
     position: relative;
 
@@ -26,7 +29,7 @@
         height: 100%;
         background: radial-gradient(
             ellipse at bottom right,
-            rgba($primary-light, 0.2),
+            rgba(v.$primary-light, 0.2),
             transparent 70%
         );
         pointer-events: none;
@@ -52,8 +55,8 @@
             height: 100%;
             background: linear-gradient(
                 45deg,
-                rgba($background-dark, 0.8),
-                rgba($primary-dark, 0.5)
+                rgba(v.$background-dark, 0.8),
+                rgba(v.$primary-dark, 0.5)
             );
             opacity: 0.7;
             z-index: 1;
@@ -80,8 +83,8 @@
             position: absolute;
             bottom: 20px;
             right: 20px;
-            background: $accent;
-            color: $text-dark;
+            background: v.$accent;
+            color: v.$text-dark;
             padding: 0.7rem 1.5rem;
             border-radius: var(--border-radius-sm);
             font-weight: 700;
@@ -101,7 +104,7 @@
             }
         }
 
-        @include respond-to('medium') {
+        @include m.respond-to('medium') {
             margin-bottom: 2rem;
         }
     }
@@ -112,30 +115,30 @@
 
     .about-content {
         padding: 3rem;
-        background: rgba($background-dark, 0.8);
+        background: rgba(v.$background-dark, 0.8);
         border-radius: var(--border-radius-lg);
-        border-left: 4px solid $accent;
+        border-left: 4px solid v.$accent;
         box-shadow: var(--shadow-lg);
         position: relative;
         z-index: 2;
 
         // Responsividade
-        @include respond-to('medium') {
+        @include m.respond-to('medium') {
             padding: 2rem 1.5rem;
         }
 
-        @include respond-to('small') {
+        @include m.respond-to('small') {
             padding: 1.5rem 1rem;
         }
 
         // Título principal
         h2 {
             margin-bottom: 1.5rem;
-            color: $accent;
+            color: v.$accent;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
             &::after {
-                background: $accent;
+                background: v.$accent;
                 height: 3px;
                 width: 60px;
             }
@@ -145,7 +148,7 @@
         p {
             margin-bottom: 1.2rem;
             line-height: 1.7;
-            color: $text-light;
+            color: v.$text-light;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
             &:last-of-type {
@@ -170,7 +173,7 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
 
-                @include respond-to('small') {
+                @include m.respond-to('small') {
                     grid-template-columns: 1fr;
                 }
 
@@ -179,7 +182,7 @@
                     align-items: center;
 
                     i {
-                        color: $accent;
+                        color: v.$accent;
                         margin-right: 0.8rem;
                         font-size: 1.2rem;
                     }
@@ -194,19 +197,19 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
             .box {
-                background: rgba($primary, 0.2);
+                background: rgba(v.$primary, 0.2);
                 padding: 1.5rem;
                 border-radius: var(--border-radius-md);
-                border-top: 3px solid $accent;
+                border-top: 3px solid v.$accent;
 
                 h4 {
-                    color: $accent;
+                    color: v.$accent;
                     margin-bottom: 1rem;
                     font-size: 1.3rem;
                 }
@@ -223,7 +226,7 @@
        INVERSÃO DE LAYOUT EM TELAS GRANDES
     ====================================================== */
 
-    @include respond-to('large') {
+    @include m.respond-to('large') {
         .row {
             flex-direction: column-reverse;
         }
@@ -238,41 +241,44 @@
     ====================================================== */
 
     .about-stats {
-        @include container;
-        margin-top: 5rem;
+        @include m.container;
+
+        & {
+            margin-top: 5rem;
+        }
 
         .stats-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
 
-            @include respond-to('medium') {
+            @include m.respond-to('medium') {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
             .stat-item {
-                background: rgba($primary-dark, 0.7);
+                background: rgba(v.$primary-dark, 0.7);
                 padding: 2rem;
                 text-align: center;
                 border-radius: var(--border-radius-md);
-                border-bottom: 3px solid $accent;
+                border-bottom: 3px solid v.$accent;
 
                 .stat-value {
                     font-size: 3rem;
                     font-weight: 700;
-                    color: $accent;
+                    color: v.$accent;
                     margin-bottom: 0.5rem;
                     line-height: 1;
-                    font-family: $font-primary;
+                    font-family: v.$font-primary;
                 }
 
                 .stat-label {
-                    color: $text-light;
+                    color: v.$text-light;
                     font-size: 1.1rem;
                     opacity: 0.9;
                 }
@@ -285,12 +291,15 @@
     ====================================================== */
 
     .about-team {
-        @include container;
-        margin-top: 5rem;
+        @include m.container;
+
+        & {
+            margin-top: 5rem;
+        }
 
         h3 {
             text-align: center;
-            color: $accent;
+            color: v.$accent;
             margin-bottom: 3rem;
             font-size: 2rem;
 
@@ -299,7 +308,7 @@
                 display: block;
                 width: 60px;
                 height: 3px;
-                background: $accent;
+                background: v.$accent;
                 margin: 1rem auto 0;
             }
         }
@@ -318,7 +327,7 @@
                     border-radius: 50%;
                     overflow: hidden;
                     margin: 0 auto 1.5rem;
-                    border: 3px solid $accent;
+                    border: 3px solid v.$accent;
 
                     img {
                         width: 100%;
@@ -333,12 +342,12 @@
                 }
 
                 h4 {
-                    color: $accent;
+                    color: v.$accent;
                     margin-bottom: 0.3rem;
                 }
 
                 .member-role {
-                    color: rgba($text-light, 0.8);
+                    color: rgba(v.$text-light, 0.8);
                     font-size: 0.9rem;
                     margin-bottom: 1rem;
                 }
@@ -354,12 +363,12 @@
                     gap: 1rem;
 
                     a {
-                        color: $text-light;
+                        color: v.$text-light;
                         font-size: 1.2rem;
                         transition: all var(--transition-normal);
 
                         &:hover {
-                            color: $accent;
+                            color: v.$accent;
                             transform: translateY(-3px);
                         }
                     }

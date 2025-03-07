@@ -1,3 +1,6 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    ÍCONES
    Estilos específicos para ícones em todo o site
@@ -19,7 +22,7 @@
 
 .service-card i {
     font-size: 3.5rem;
-    color: $accent;
+    color: v.$accent;
     margin-bottom: var(--spacing-md);
     transition: all var(--transition-normal);
     display: block;
@@ -27,14 +30,14 @@
 
     &:hover {
         transform: scale(1.2) rotateY(360deg);
-        color: $accent;
+        color: v.$accent;
     }
 
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         font-size: 3rem;
     }
 
-    @include respond-to('small') {
+    @include m.respond-to('small') {
         font-size: 2.5rem;
         margin-bottom: 0.8rem;
     }
@@ -46,7 +49,7 @@
 
 .feature i {
     font-size: 2.5rem;
-    color: $accent;
+    color: v.$accent;
     margin-bottom: 0.8rem;
     transition: transform var(--transition-normal);
 
@@ -54,11 +57,11 @@
         transform: scale(1.2);
     }
 
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         font-size: 2.2rem;
     }
 
-    @include respond-to('small') {
+    @include m.respond-to('small') {
         font-size: 2rem;
         margin-bottom: 0.6rem;
     }
@@ -69,13 +72,13 @@
   ====================================================== */
 
 .contact-details i {
-    color: $accent;
+    color: v.$accent;
     margin-right: 1rem;
     font-size: 1.2rem;
     width: 24px;
     text-align: center;
 
-    @include respond-to('small-mobile') {
+    @include m.respond-to('small-mobile') {
         margin-right: 0.75rem;
         font-size: 1rem;
         width: 20px;
@@ -83,7 +86,7 @@
 }
 
 .footer-contact p i {
-    color: $accent;
+    color: v.$accent;
     margin-right: 0.8rem;
     width: 20px;
     text-align: center;
@@ -119,7 +122,7 @@
   ====================================================== */
 
 .testimonial-author .rating i {
-    color: $accent;
+    color: v.$accent;
     margin-left: 2px;
 }
 
@@ -130,7 +133,7 @@
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
-    background-color: $accent;
+    background-color: v.$accent;
 }
 
 /* ======================================================
@@ -139,7 +142,7 @@
 
 .form-check input[type='checkbox']:checked::after,
 .search-form button i {
-    color: $accent;
+    color: v.$accent;
 }
 
 .date-picker input[type='date']::-webkit-calendar-picker-indicator {

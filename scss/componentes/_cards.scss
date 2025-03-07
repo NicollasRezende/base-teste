@@ -1,3 +1,6 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    CARDS
    Estilos para os diferentes tipos de cards usados no site
@@ -17,12 +20,12 @@
 
 .service-card {
     @extend %card-base;
-    @include hover-lift;
+    @include m.hover-lift;
 
     position: relative;
-    background: rgba($primary-dark, 0.8);
+    background: rgba(v.$primary-dark, 0.8);
     padding: var(--spacing-lg);
-    border: 1px solid rgba($accent, 0.2);
+    border: 1px solid rgba(v.$accent, 0.2);
     animation: fadeIn var(--transition-normal) forwards;
     text-align: center;
     transition: transform var(--transition-normal),
@@ -37,7 +40,7 @@
         left: 0;
         width: 100%;
         height: 5px;
-        background: linear-gradient(to right, $accent, #e384ff);
+        background: linear-gradient(to right, v.$accent, #e384ff);
         transform: scaleX(0);
         transition: transform var(--transition-normal);
         transform-origin: left;
@@ -53,7 +56,7 @@
         height: 200%;
         background: radial-gradient(
             circle at bottom right,
-            rgba($accent, 0.15),
+            rgba(v.$accent, 0.15),
             transparent 70%
         );
         transition: all var(--transition-slow);
@@ -62,7 +65,7 @@
 
     // Animações no hover
     &:hover {
-        background: rgba($primary, 0.9);
+        background: rgba(v.$primary, 0.9);
         transform: translateY(-8px);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
 
@@ -79,7 +82,7 @@
     // Ícone do serviço
     i {
         font-size: 3.5rem;
-        color: $accent;
+        color: v.$accent;
         margin-bottom: var(--spacing-md);
         transition: all var(--transition-normal);
         display: block;
@@ -87,13 +90,13 @@
 
         &:hover {
             transform: scale(1.2) rotateY(360deg);
-            color: $accent;
+            color: v.$accent;
         }
     }
 
     // Título do serviço
     h4 {
-        color: $text-light;
+        color: v.$text-light;
         margin-bottom: 1rem;
         font-size: 1.5rem;
         position: relative;
@@ -105,7 +108,7 @@
             position: absolute;
             width: 40px;
             height: 2px;
-            background: rgba($accent, 0.5);
+            background: rgba(v.$accent, 0.5);
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
@@ -119,13 +122,13 @@
 
     // Descrição do serviço
     p {
-        color: rgba($text-light, 0.9);
+        color: rgba(v.$text-light, 0.9);
         line-height: 1.6;
         margin-bottom: 0;
     }
 
     // Responsividade
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         padding: var(--spacing-md);
 
         i {
@@ -137,7 +140,7 @@
         }
     }
 
-    @include respond-to('small') {
+    @include m.respond-to('small') {
         padding: var(--spacing-sm);
 
         i {
@@ -163,17 +166,17 @@
 .testimonial-card {
     @extend %card-base;
 
-    background: rgba($primary-dark, 0.3);
+    background: rgba(v.$primary-dark, 0.3);
     padding: 2rem;
     margin-bottom: 2rem;
-    border: 1px solid rgba($accent, 0.1);
+    border: 1px solid rgba(v.$accent, 0.1);
     transition: all var(--transition-normal);
     height: 100%;
 
     &:hover {
         transform: translateY(-10px);
         box-shadow: var(--shadow-lg);
-        background: rgba($primary-dark, 0.5);
+        background: rgba(v.$primary-dark, 0.5);
     }
 
     // Conteúdo do depoimento
@@ -188,14 +191,14 @@
             position: absolute;
             top: -15px;
             left: -5px;
-            font-family: $font-primary;
+            font-family: v.$font-primary;
             font-size: 5rem;
-            color: rgba($accent, 0.2);
+            color: rgba(v.$accent, 0.2);
             line-height: 1;
         }
 
         p {
-            color: $text-light;
+            color: v.$text-light;
             font-style: italic;
             line-height: 1.6;
             position: relative;
@@ -211,20 +214,20 @@
 
         .author-info {
             h5 {
-                color: $accent;
+                color: v.$accent;
                 margin-bottom: 0.2rem;
                 font-weight: 600;
             }
 
             span {
-                color: rgba($text-light, 0.7);
+                color: rgba(v.$text-light, 0.7);
                 font-size: 0.9rem;
             }
         }
 
         // Avaliação em estrelas
         .rating {
-            color: $accent;
+            color: v.$accent;
 
             i {
                 margin-left: 2px;
@@ -233,7 +236,7 @@
     }
 
     // Responsividade
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         padding: 1.75rem;
 
         .testimonial-content {
@@ -245,7 +248,7 @@
         }
     }
 
-    @include respond-to('small') {
+    @include m.respond-to('small') {
         padding: 1.5rem;
 
         .testimonial-content {
@@ -284,13 +287,13 @@
     transition: all var(--transition-normal);
 
     &:hover {
-        background: rgba($primary, 0.2);
+        background: rgba(v.$primary, 0.2);
     }
 
     // Ícone do recurso
     i {
         font-size: 2.5rem;
-        color: $accent;
+        color: v.$accent;
         margin-bottom: 0.8rem;
         transition: transform var(--transition-normal);
     }
@@ -301,14 +304,14 @@
 
     // Nome do recurso
     span {
-        color: $text-light;
+        color: v.$text-light;
         font-weight: 500;
         font-size: 1.1rem;
         display: block;
     }
 
     // Responsividade
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         padding: 1.2rem;
 
         i {
@@ -320,7 +323,7 @@
         }
     }
 
-    @include respond-to('small') {
+    @include m.respond-to('small') {
         padding: 1rem;
 
         i {

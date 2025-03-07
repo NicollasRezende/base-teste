@@ -1,3 +1,6 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
 /* ======================================================
    SEÇÃO HERO - Banner principal
 ====================================================== */
@@ -5,11 +8,11 @@
 .hero {
     min-height: 100vh;
     background: linear-gradient(
-            rgba($background-dark, 0.7),
-            rgba($background-dark, 0.7)
+            rgba(v.$background-dark, 0.7),
+            rgba(v.$background-dark, 0.7)
         ),
         url('hero-bg.jpg') center/cover no-repeat;
-    @include flex-center;
+    @include m.flex-center;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -24,7 +27,7 @@
         height: 100%;
         background: radial-gradient(
             circle at center,
-            rgba($primary-light, 0.2),
+            rgba(v.$primary-light, 0.2),
             transparent 70%
         );
         pointer-events: none;
@@ -44,18 +47,18 @@
             font-size: 3.5rem;
 
             span {
-                color: $accent;
+                color: v.$accent;
             }
 
-            @include respond-to('large') {
+            @include m.respond-to('large') {
                 font-size: 3rem;
             }
 
-            @include respond-to('medium') {
+            @include m.respond-to('medium') {
                 font-size: 2.5rem;
             }
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 font-size: 2rem;
             }
         }
@@ -63,14 +66,14 @@
         p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            color: $text-light;
+            color: v.$text-light;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 
-            @include respond-to('medium') {
+            @include m.respond-to('medium') {
                 font-size: 1.3rem;
             }
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 font-size: 1.1rem;
                 margin-bottom: 1.5rem;
             }
@@ -82,19 +85,19 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             animation: pulse 2s infinite;
 
-            @include respond-to('small') {
+            @include m.respond-to('small') {
                 padding: 1rem 2rem;
                 font-size: 1rem;
             }
         }
 
-        @include respond-to('small') {
+        @include m.respond-to('small') {
             padding: 1.5rem;
         }
     }
 
     // Responsividade adicional para a seção hero
-    @include respond-to('medium') {
+    @include m.respond-to('medium') {
         background-position: center 30%;
 
         &::after {
@@ -106,7 +109,7 @@
             height: 40%;
             background: linear-gradient(
                 to top,
-                rgba($background-dark, 0.8),
+                rgba(v.$background-dark, 0.8),
                 transparent
             );
             pointer-events: none;
