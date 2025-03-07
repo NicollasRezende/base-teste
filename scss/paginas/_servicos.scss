@@ -94,12 +94,13 @@
     .services-grid {
         @include m.container;
 
-        // Propriedades base (antes de qualquer regra aninhada)
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2.5rem;
-        position: relative;
-        z-index: 2;
+        & {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
 
         @include m.respond-to('medium') {
             grid-template-columns: repeat(2, 1fr);
@@ -134,7 +135,10 @@
 
     .additional-services {
         @include m.container;
-        margin-top: 4rem;
+
+        & {
+            margin-top: 4rem;
+        }
 
         h3 {
             color: v.$accent;
@@ -187,7 +191,10 @@
 
     .service-pricing {
         @include m.container;
-        margin-top: 4rem;
+
+        & {
+            margin-top: 4rem;
+        }
 
         h3 {
             color: v.$accent;
@@ -295,7 +302,10 @@
 
     .service-booking {
         @include m.container;
-        margin-top: 5rem;
+
+        & {
+            margin-top: 5rem;
+        }
 
         .booking-wrapper {
             background: rgba(v.$primary-dark, 0.7);

@@ -16,10 +16,13 @@
 
     .contact-container {
         @include m.container;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 4rem;
-        align-items: center;
+
+        & {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            align-items: center;
+        }
 
         // Responsividade para diferentes tamanhos de tela
         @media (max-width: 992px) {
@@ -240,7 +243,10 @@
 
     .contact-map {
         @include m.container;
-        margin-top: 5rem;
+
+        & {
+            margin-top: 5rem;
+        }
 
         h3 {
             text-align: center;
@@ -283,7 +289,10 @@
 
     .contact-faq {
         @include m.container;
-        margin-top: 5rem;
+
+        & {
+            margin-top: 5rem;
+        }
 
         h3 {
             text-align: center;
@@ -373,8 +382,11 @@
 
     .contact-cta {
         @include m.container;
-        margin-top: 5rem;
-        text-align: center;
+
+        & {
+            margin-top: 5rem;
+            text-align: center;
+        }
 
         h3 {
             color: v.$accent;
