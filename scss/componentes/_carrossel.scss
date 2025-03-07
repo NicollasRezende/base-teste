@@ -1,0 +1,418 @@
+/* ======================================================
+   CARROSSEL
+   Estilos para carrosséis e sliders do site
+====================================================== */
+
+.carousel {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+    // Borda superior colorida
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(
+            to right,
+            $accent-dark,
+            $accent,
+            $accent-dark
+        );
+        z-index: 10;
+        border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    }
+
+    /* ======================================================
+       ITEM DO CARROSSEL
+    ====================================================== */
+
+    .carousel-item {
+        height: 600px;
+        position: relative;
+
+        // Gradiente para melhorar visibilidade do texto
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba($background-dark, 0.2),
+                transparent 40%,
+                rgba($background-dark, 0.6)
+            );
+            z-index: 1;
+        }
+
+        // Imagem com efeito de zoom lento
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            transform: scale(1);
+            transition: transform 10s ease;
+        }
+
+        &.active img {
+            transform: scale(1.05);
+        }
+
+        /* ======================================================
+         LEGENDA DO CARROSSEL
+      ====================================================== */
+
+        .carousel-caption {
+            background: rgba($background-dark, 0.85) !important;
+            padding: 2.5rem;
+            border-left: 5px solid $accent;
+            max-width: 520px;
+            bottom: 2.5rem;
+            left: 2.5rem;
+            right: auto;
+            text-align: left;
+            border-radius: var(--border-radius-md);
+            backdrop-filter: blur(5px);
+            transform: translateY(0);
+            transition: transform var(--transition-normal),
+                box-shadow var(--transition-normal);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            }
+
+            // Título da legenda
+            h3 {
+                color: $accent;
+                margin-bottom: 1rem;
+                font-size: 2rem;
+                position: relative;
+                display: inline-block;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 40px;
+                    height: 2px;
+                    background: rgba($accent, 0.5);
+                    transition: width var(--transition-normal);
+                }
+            }
+
+            &:hover h3::after {
+                width: 70px;
+            }
+
+            // Descrição da legenda
+            p {
+                color: $text-light;
+                margin-bottom: 1.5rem;
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+
+            // Preço
+            .price {
+                display: flex;
+                align-items: center;
+                color: $accent-light;
+                font-size: 1.7rem;
+                margin-top: 1.5rem;
+                font-weight: 700;
+
+                &::before {
+                    content: '';
+                    display: inline-block;
+                    width: 20px;
+                    height: 2px;
+                    background: $accent;
+                    margin-right: 10px;
+                }
+            }
+
+            // Botão "Ver detalhes"
+            .btn-view {
+                display: inline-block;
+                margin-top: 1rem;
+                background: transparent;
+                color: $accent;
+                border: 2px solid $accent;
+                padding: 0.5rem 1.5rem;
+                border-radius: var(--border-radius-sm);
+                font-weight: 600;
+                transition: all var(--transition-normal);
+                text-decoration: none;
+
+                &:hover {
+                    background: $accent;
+                    color: $text-dark;
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       CONTROLES DO CARROSSEL
+    ====================================================== */
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        z-index: 30; // Garantir que fiquem acima dos cards
+        width: 50px;
+        height: 50px;
+        background: rgba($background-dark, 0.6);
+        border-radius: 50%;
+        opacity: 0.8;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all var(--transition-normal);
+
+        &:hover {
+            background: rgba($accent-dark, 0.8);
+            transform: translateY(-50%) scale(1.1);
+            opacity: 1;
+        }
+
+        // Devices médios
+        @media (max-width: 768px) {
+            width: 45px;
+            height: 45px;
+
+            &::after {
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+        // Devices pequenos
+        @media (max-width: 576px) {
+            width: 35px;
+            height: 35px;
+            top: 40%; // Mover um pouco para cima
+            background: rgba($background-dark, 0.8);
+
+            &::after {
+                width: 12px;
+                height: 12px;
+                border-width: 2px;
+            }
+
+            &:hover {
+                transform: translateY(-50%) scale(1.05); // Reduzir efeito
+            }
+        }
+
+        // Devices muito pequenos
+        @media (max-width: 480px) {
+            width: 30px;
+            height: 30px;
+            top: 35%;
+
+            &::after {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        // Devices extremamente pequenos
+        @media (max-width: 400px) {
+            width: 26px;
+            height: 26px;
+            top: 30%;
+
+            &::after {
+                width: 8px;
+                height: 8px;
+            }
+        }
+    }
+
+    // Posicionamento dos controles
+    .carousel-control-prev {
+        left: 20px;
+
+        @media (max-width: 768px) {
+            left: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            left: 0.5rem;
+        }
+
+        @media (max-width: 400px) {
+            bottom: 10rem;
+            left: 0.26rem;
+        }
+    }
+
+    .carousel-control-next {
+        right: 20px;
+
+        @media (max-width: 768px) {
+            right: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            right: 0.5rem;
+        }
+
+        @media (max-width: 400px) {
+            right: 0.25rem;
+        }
+    }
+
+    /* ======================================================
+       INDICADORES DO CARROSSEL
+    ====================================================== */
+
+    .carousel-indicators {
+        bottom: 20px;
+        z-index: 20;
+
+        button {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: rgba($accent, 0.4);
+            margin: 0 7px;
+            opacity: 0.7;
+            transition: all var(--transition-normal);
+
+            &.active {
+                background-color: $accent;
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            &:hover {
+                background-color: $accent;
+                opacity: 0.9;
+            }
+        }
+
+        @media (max-width: 576px) {
+            bottom: 10px;
+
+            button {
+                width: 10px;
+                height: 10px;
+                margin: 0 5px;
+            }
+        }
+    }
+
+    /* ======================================================
+       RESPONSIVIDADE DO CARROSSEL
+    ====================================================== */
+
+    // Dispositivos grandes
+    @include respond-to('large') {
+        .carousel-item {
+            height: 500px;
+
+            .carousel-caption {
+                padding: 2rem;
+                max-width: 480px;
+
+                h3 {
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+
+    // Dispositivos médios
+    @include respond-to('medium') {
+        .carousel-item {
+            height: 450px;
+
+            .carousel-caption {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 2rem;
+                width: 90%;
+                max-width: none;
+
+                &:hover {
+                    transform: translateX(-50%) translateY(-5px);
+                }
+
+                h3 {
+                    font-size: 1.6rem;
+                }
+
+                .price {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+
+    // Dispositivos pequenos
+    @include respond-to('small') {
+        .carousel-item {
+            height: 350px;
+
+            .carousel-caption {
+                padding: 1.5rem;
+
+                h3 {
+                    font-size: 1.4rem;
+                    margin-bottom: 0.5rem;
+                }
+
+                p {
+                    font-size: 1rem;
+                    margin-bottom: 1rem;
+                }
+
+                .price {
+                    font-size: 1.3rem;
+                    margin-top: 1rem;
+                }
+
+                .btn-view {
+                    padding: 0.4rem 1.2rem;
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}
+
+/* ======================================================
+     CARROSSEL DE DEPOIMENTOS (TESTIMONIALS)
+  ====================================================== */
+
+.testimonials-slider {
+    @include respond-to('medium') {
+        flex-direction: column;
+
+        .testimonial-card {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}

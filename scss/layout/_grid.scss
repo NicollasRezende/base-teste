@@ -1,0 +1,436 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/breakpoints' as b;
+
+/* ======================================================
+   GRID E CONTAINERS
+   Sistema de layout e containers para toda a aplicação
+====================================================== */
+
+/* ======================================================
+   CONTAINER PRINCIPAL
+====================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+
+    @include m.respond-to('large') {
+        max-width: b.$container-large;
+    }
+
+    @include m.respond-to('medium') {
+        max-width: b.$container-medium;
+        padding: 0 1.5rem;
+    }
+
+    @include m.respond-to('small') {
+        max-width: b.$container-small;
+        padding: 0 1rem;
+    }
+}
+
+/* ======================================================
+     GRID SYSTEMS
+  ====================================================== */
+
+// Grid flexível padrão
+.flex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1rem; // Compensar pelo gap interno
+
+    > * {
+        padding: 1rem;
+    }
+
+    // Variações de colunas
+    &.cols-2 > * {
+        width: 50%;
+
+        @include m.respond-to('small') {
+            width: 100%;
+        }
+    }
+
+    &.cols-3 > * {
+        width: 33.333%;
+
+        @include m.respond-to('medium') {
+            width: 50%;
+        }
+
+        @include m.respond-to('small') {
+            width: 100%;
+        }
+    }
+
+    &.cols-4 > * {
+        width: 25%;
+
+        @include m.respond-to('medium') {
+            width: 50%;
+        }
+
+        @include m.respond-to('small') {
+            width: 100%;
+        }
+    }
+}
+
+// Grid CSS moderno
+.css-grid {
+    display: grid;
+    gap: 2rem;
+
+    // Variações de colunas
+    &.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+
+        @include m.respond-to('small') {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+
+        @include m.respond-to('medium') {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.respond-to('small') {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+
+        @include m.respond-to('large') {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include m.respond-to('medium') {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.respond-to('small') {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // Grid de auto-ajuste
+    &.auto-fit {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    // Variações de gap
+    &.gap-sm {
+        gap: 1rem;
+    }
+
+    &.gap-lg {
+        gap: 3rem;
+    }
+}
+
+/* ======================================================
+     GRIDS ESPECÍFICOS
+  ====================================================== */
+
+// Grid de serviços
+.services-grid {
+    @include m.container;
+
+    @include m.respond-to('medium') {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    @include m.respond-to('small') {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    & {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+// Grid de características/recursos
+.features-grid {
+    @include m.container;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+
+    @include m.respond-to('small') {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+// Grid do rodapé
+.footer-grid {
+    @include m.container;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(v.$accent, 0.1);
+
+    @include m.respond-to('medium') {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+
+    @include m.respond-to('small') {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* ======================================================
+     CONTÊINERES ESPECÍFICOS
+  ====================================================== */
+
+// Container de contato
+.contact-container {
+    @include m.container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    align-items: center;
+
+    @media (max-width: 992px) {
+        gap: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+}
+
+/* ======================================================
+     UTILITÁRIOS DE LAYOUT
+  ====================================================== */
+
+// Utilitários flexbox
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+// Utilitários de espaçamento
+.gap-1 {
+    gap: 0.5rem;
+}
+.gap-2 {
+    gap: 1rem;
+}
+.gap-3 {
+    gap: 1.5rem;
+}
+.gap-4 {
+    gap: 2rem;
+}
+.gap-5 {
+    gap: 3rem;
+}
+
+// Margens
+.mt-1 {
+    margin-top: 0.5rem;
+}
+.mt-2 {
+    margin-top: 1rem;
+}
+.mt-3 {
+    margin-top: 1.5rem;
+}
+.mt-4 {
+    margin-top: 2rem;
+}
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+.mb-2 {
+    margin-bottom: 1rem;
+}
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+.mb-4 {
+    margin-bottom: 2rem;
+}
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+.ms-auto {
+    margin-left: auto;
+}
+.me-auto {
+    margin-right: auto;
+}
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// Paddings
+.p-1 {
+    padding: 0.5rem;
+}
+.p-2 {
+    padding: 1rem;
+}
+.p-3 {
+    padding: 1.5rem;
+}
+.p-4 {
+    padding: 2rem;
+}
+.p-5 {
+    padding: 3rem;
+}
+
+/* ======================================================
+     ALINHAMENTO DE TEXTO
+  ====================================================== */
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ======================================================
+     SEÇÕES E DIVISORES
+  ====================================================== */
+
+// Todas as seções principais
+section {
+    position: relative;
+}
+
+// Padding padrão para seções
+.section-padding {
+    @include m.section-padding;
+}
+
+// Cabeçalho de seção
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+
+    h2 {
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        color: v.$accent;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(
+                to right,
+                v.$accent-dark,
+                v.$accent,
+                v.$accent-dark
+            );
+        }
+    }
+
+    p {
+        max-width: 600px;
+        margin: 1.5rem auto 0;
+        color: v.$text-light;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    @include m.respond-to('medium') {
+        margin-bottom: 3rem;
+
+        h2 {
+            font-size: 2.2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+        }
+    }
+
+    @include m.respond-to('small') {
+        margin-bottom: 2.5rem;
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1rem;
+        }
+    }
+}
+
+// Divisor de seção
+.section-divider {
+    width: 60px;
+    height: 3px;
+    background: v.$accent;
+    margin: 0 0 1.5rem 0;
+}

@@ -1,0 +1,95 @@
+/* ======================================================
+   VARIÁVEIS
+====================================================== */
+
+// Paleta de cores
+$primary-dark: #10375c; // Azul escuro
+$primary: #1b1a55; // Azul marinho
+$primary-light: #535c91; // Azul médio
+$accent: #ffd95a; // Dourado vibrante
+$accent-dark: #c07f00; // Dourado escuro
+$accent-light: #fff7d4; // Creme claro
+$text-light: #f4f6ff; // Quase branco
+$text-dark: #4c3d3d; // Marrom escuro
+$background-dark: #222831; // Cinza muito escuro
+$background: #393e46; // Cinza escuro
+$background-light: #eeeeee; // Cinza claro
+
+// Fontes
+$font-primary: 'Playfair Display', serif;
+$font-secondary: 'Raleway', sans-serif;
+
+// Espaçamentos (para uso nas variáveis CSS)
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+$spacing-xl: 4rem;
+
+// Bordas arredondadas
+$border-radius-sm: 3px;
+$border-radius-md: 5px;
+$border-radius-lg: 10px;
+$border-radius-xl: 20px;
+
+// Transições
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Sombras
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+// Variáveis CSS (Custom Properties)
+:root {
+    // Cores
+    --primary-100: #{$primary-dark};
+    --primary-200: #{$primary};
+    --primary-300: #{$primary-light};
+    --accent-100: #{$accent};
+    --accent-200: #{$accent-dark};
+    --accent-300: #{$accent-light};
+    --background-100: #{$background-dark};
+    --background-200: #{$background};
+    --background-300: #{$background-light};
+    --text-100: #{$text-light};
+    --text-200: #{$text-dark};
+    --text-300: #9290c3;
+
+    // Espaçamentos
+    --spacing-xs: #{$spacing-xs};
+    --spacing-sm: #{$spacing-sm};
+    --spacing-md: #{$spacing-md};
+    --spacing-lg: #{$spacing-lg};
+    --spacing-xl: #{$spacing-xl};
+
+    // Bordas arredondadas
+    --border-radius-sm: #{$border-radius-sm};
+    --border-radius-md: #{$border-radius-md};
+    --border-radius-lg: #{$border-radius-lg};
+    --border-radius-xl: #{$border-radius-xl};
+
+    // Transições
+    --transition-fast: #{$transition-fast};
+    --transition-normal: #{$transition-normal};
+    --transition-slow: #{$transition-slow};
+
+    // Sombras
+    --shadow-sm: #{$shadow-sm};
+    --shadow-md: #{$shadow-md};
+    --shadow-lg: #{$shadow-lg};
+}
+
+// Variáveis legadas para compatibilidade
+$color-primary: $primary;
+$color-primary-light: $primary-light;
+$color-primary-dark: $primary-dark;
+$color-accent: $accent;
+$color-accent-dark: $accent-dark;
+$color-accent-light: $accent-light;
+$color-background: $background-dark;
+$color-background-light: $background;
+$color-text-light: $text-light;
+$color-text-dark: $text-dark;

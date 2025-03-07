@@ -1,0 +1,107 @@
+/* ======================================================
+   RESET E ESTILOS BASE
+====================================================== */
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+
+// Reset básico
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Remover estilos de lista
+ul,
+ol {
+    list-style: none;
+}
+
+// Remover sublinhado de links
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-normal);
+}
+
+// Reset de botões
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+}
+
+// Remover estilos de input
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+// Configuração base do documento
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: v.$font-secondary;
+    color: v.$text-light;
+    line-height: 1.6;
+    background-color: v.$background-dark;
+    overflow-x: hidden;
+    min-height: 100vh;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
+}
+
+// Evitar que imagens ultrapassem seus containers
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+// Tornando elementos acessíveis por teclado
+a,
+button,
+input,
+select,
+textarea,
+[tabindex]:not([tabindex='-1']) {
+    &:focus-visible {
+        outline: 2px solid v.$accent;
+        outline-offset: 2px;
+    }
+}
+
+// Classes auxiliares
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.clearfix::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.container {
+    @include m.container;
+}

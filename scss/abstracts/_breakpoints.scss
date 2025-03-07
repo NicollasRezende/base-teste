@@ -1,0 +1,26 @@
+/* ======================================================
+   BREAKPOINTS PARA RESPONSIVIDADE
+====================================================== */
+
+// Mapa de breakpoints
+$breakpoints: (
+    'small': 576px,
+    // Dispositivos muito pequenos
+    'medium': 768px,
+    // Dispositivos médios
+    'large': 992px,
+    // Dispositivos grandes
+    'xlarge': 1200px,
+    // Dispositivos muito grandes
+    'tablet': 992px,
+    // Alias para large
+    'mobile': 768px,
+    // Alias para medium
+    'small-mobile': 480px // Menor que small,
+);
+
+// Tamanhos de container
+$container-small: 100%;
+$container-medium: 720px;
+$container-large: 960px;
+$container-xlarge: 1140px;

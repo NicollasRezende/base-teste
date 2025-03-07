@@ -1,0 +1,346 @@
+/* ======================================================
+   SEÇÃO DE SERVIÇOS
+   Estilos para a seção de serviços do hotel
+====================================================== */
+
+.services-section {
+    @include section-padding;
+    background: linear-gradient(to bottom, $background-dark, #191825);
+    position: relative;
+
+    /* ======================================================
+       EFEITO DE FUNDO
+    ====================================================== */
+
+    // Efeito de gradiente radial
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            ellipse at top,
+            rgba(#865dff, 0.1),
+            transparent 70%
+        );
+        pointer-events: none;
+    }
+
+    /* ======================================================
+       CABEÇALHO DA SEÇÃO
+    ====================================================== */
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 2;
+
+        h2 {
+            color: $accent;
+            display: inline-block;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+            &::after {
+                height: 3px;
+                background: linear-gradient(
+                    to right,
+                    $accent,
+                    #865dff,
+                    $accent
+                );
+            }
+        }
+
+        p {
+            max-width: 600px;
+            margin: 1rem auto 0;
+            color: $text-light;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        @include respond-to('medium') {
+            margin-bottom: 3rem;
+
+            p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+        }
+
+        @include respond-to('small') {
+            margin-bottom: 2rem;
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 0.95rem;
+            }
+        }
+    }
+
+    /* ======================================================
+       GRID DE SERVIÇOS
+    ====================================================== */
+
+    .services-grid {
+        @include container;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+        position: relative;
+        z-index: 2;
+
+        @include respond-to('medium') {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @include respond-to('small') {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        /* ======================================================
+         ANIMAÇÃO DOS CARDS DE SERVIÇO
+      ====================================================== */
+
+        .service-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+
+            @for $i from 1 through 8 {
+                &:nth-child(#{$i}) {
+                    animation-delay: 0.15s * $i;
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       LISTA DE SERVIÇOS ADICIONAIS
+    ====================================================== */
+
+    .additional-services {
+        @include container;
+        margin-top: 4rem;
+
+        h3 {
+            color: $accent;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+
+            @include respond-to('small') {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+
+            .service-item {
+                background: rgba($primary-dark, 0.5);
+                padding: 1.2rem;
+                border-radius: var(--border-radius-md);
+                display: flex;
+                align-items: center;
+                transition: all var(--transition-normal);
+                border-left: 3px solid rgba($accent, 0.5);
+
+                &:hover {
+                    background: rgba($primary-dark, 0.8);
+                    transform: translateX(5px);
+                    border-left-color: $accent;
+                }
+
+                i {
+                    color: $accent;
+                    font-size: 1.5rem;
+                    margin-right: 1rem;
+                }
+
+                span {
+                    color: $text-light;
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       PREÇOS DE SERVIÇOS
+    ====================================================== */
+
+    .service-pricing {
+        @include container;
+        margin-top: 4rem;
+
+        h3 {
+            color: $accent;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba($primary-dark, 0.5);
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+
+            th,
+            td {
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid rgba($accent, 0.1);
+            }
+
+            th {
+                background: rgba($primary, 0.3);
+                text-align: left;
+                color: $accent;
+                font-weight: 600;
+            }
+
+            tr:last-child td {
+                border-bottom: none;
+            }
+
+            tr:hover td {
+                background: rgba($primary, 0.1);
+            }
+
+            .service-name {
+                color: $text-light;
+                font-weight: 500;
+            }
+
+            .service-description {
+                color: rgba($text-light, 0.8);
+                font-size: 0.9rem;
+            }
+
+            .service-price {
+                color: $accent-light;
+                font-weight: 600;
+                text-align: right;
+            }
+        }
+
+        @include respond-to('small') {
+            .pricing-table {
+                display: block;
+                overflow-x: auto;
+
+                th,
+                td {
+                    padding: 0.8rem 1rem;
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       BOTÃO "VER MAIS SERVIÇOS"
+    ====================================================== */
+
+    .services-cta {
+        text-align: center;
+        margin-top: 3rem;
+
+        .btn-services {
+            @extend .btn-secondary;
+            padding: 0.8rem 2rem;
+
+            i {
+                margin-left: 0.5rem;
+                transition: transform var(--transition-normal);
+            }
+
+            &:hover i {
+                transform: translateX(5px);
+            }
+        }
+    }
+
+    /* ======================================================
+       RESERVA DE SERVIÇOS
+    ====================================================== */
+
+    .service-booking {
+        @include container;
+        margin-top: 5rem;
+
+        .booking-wrapper {
+            background: rgba($primary-dark, 0.7);
+            padding: 2.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba($accent, 0.1);
+
+            h3 {
+                color: $accent;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            form {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+
+                @include respond-to('small') {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
+
+                .form-group {
+                    &.full-width {
+                        grid-column: span 2;
+
+                        @include respond-to('small') {
+                            grid-column: span 1;
+                        }
+                    }
+                }
+
+                button {
+                    grid-column: span 2;
+                    padding: 1rem;
+                    background: $accent;
+                    color: $text-dark;
+                    border: none;
+                    border-radius: var(--border-radius-md);
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all var(--transition-normal);
+
+                    &:hover {
+                        background: $accent-dark;
+                        color: $text-light;
+                    }
+
+                    @include respond-to('small') {
+                        grid-column: span 1;
+                    }
+                }
+            }
+
+            @include respond-to('medium') {
+                padding: 2rem;
+            }
+
+            @include respond-to('small') {
+                padding: 1.5rem;
+            }
+        }
+    }
+}

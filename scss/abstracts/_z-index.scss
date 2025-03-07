@@ -1,0 +1,27 @@
+/* ======================================================
+   GERENCIAMENTO DE Z-INDEX
+   Centraliza todos os z-index para evitar conflitos
+====================================================== */
+
+// Mapa de z-index para manter consistência e evitar sobreposições inesperadas
+@use 'sass:map';
+
+$z-layers: (
+    'modal': 2000,
+    'overlay': 1500,
+    'dropdown': 1000,
+    'header': 900,
+    'navigation': 800,
+    'footer': 100,
+    'default': 1,
+);
+
+// Função para acessar os valores de z-index
+@function z($layer) {
+    @if map.has-key($z-layers, $layer) {
+        @return map.get($z-layers, $layer);
+    }
+
+    @warn "Z-index '#{$layer}' não existe no mapa $z-layers.";
+    @return map.get($z-layers, 'default');
+}

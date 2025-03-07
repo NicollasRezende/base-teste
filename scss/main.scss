@@ -1,0 +1,31 @@
+/* main.scss */
+@use 'sass:color';
+@use 'sass:map';
+
+/* Abstracts - use encaminhamento para simplificar */
+@use 'abstracts/index';
+
+/* Base */
+@use 'base/reset';
+@use 'base/tipografia';
+@use 'base/animacoes';
+
+/* Layout */
+@use 'layout/grid';
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/responsivo';
+
+/* Componentes */
+@use 'componentes/botoes';
+@use 'componentes/cards';
+@use 'componentes/carrossel';
+@use 'componentes/formularios';
+@use 'componentes/icones';
+
+/* Páginas */
+@use 'paginas/home';
+@use 'paginas/sobre';
+@use 'paginas/quartos';
+@use 'paginas/servicos';
+@use 'paginas/contato';

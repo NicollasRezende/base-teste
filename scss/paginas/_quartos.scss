@@ -1,0 +1,453 @@
+/* ======================================================
+   SEÇÃO DE QUARTOS
+   Estilos para a seção de quartos e suítes do hotel
+====================================================== */
+
+.rooms-section {
+    @include section-padding;
+    background: linear-gradient(to bottom, #191825, $primary-dark);
+    position: relative;
+
+    /* ======================================================
+       EFEITO DE FUNDO
+    ====================================================== */
+
+    // Efeito de overlay radial
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            ellipse at center,
+            rgba(#535c91, 0.15),
+            transparent 70%
+        );
+        pointer-events: none;
+    }
+
+    /* ======================================================
+       CABEÇALHO DA SEÇÃO
+    ====================================================== */
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 5rem;
+        position: relative;
+        z-index: 2;
+
+        h2 {
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            color: $accent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background: linear-gradient(
+                    to right,
+                    $accent-dark,
+                    $accent,
+                    $accent-dark
+                );
+            }
+        }
+
+        p {
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+            color: $text-light;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        @include respond-to('medium') {
+            margin-bottom: 3rem;
+        }
+
+        @include respond-to('small') {
+            margin-bottom: 2rem;
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    /* ======================================================
+       GRID DE QUARTOS (ALTERNATIVA AO CARROSSEL)
+    ====================================================== */
+
+    .rooms-grid {
+        @include container;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2rem;
+
+        @include respond-to('small') {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ======================================================
+       CARD DE QUARTO
+    ====================================================== */
+
+    .room-card {
+        background: rgba($primary-dark, 0.7);
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        transition: all var(--transition-normal);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        // Imagem do quarto
+        .room-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform var(--transition-slow);
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba($background-dark, 0.5)
+                );
+                z-index: 1;
+            }
+
+            // Tag de disponibilidade
+            .room-tag {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                padding: 0.5rem 1rem;
+                background: $accent;
+                color: $text-dark;
+                font-weight: 600;
+                font-size: 0.8rem;
+                border-radius: var(--border-radius-sm);
+                z-index: 2;
+                box-shadow: var(--shadow-sm);
+
+                &.unavailable {
+                    background: #ff6b6b;
+                    color: white;
+                }
+            }
+        }
+
+        &:hover .room-image img {
+            transform: scale(1.1);
+        }
+
+        // Conteúdo do card
+        .room-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+                color: $accent;
+                margin-bottom: 0.5rem;
+                font-size: 1.5rem;
+            }
+
+            .room-description {
+                color: $text-light;
+                opacity: 0.9;
+                margin-bottom: 1rem;
+            }
+
+            // Lista de amenidades
+            .room-amenities {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-bottom: 1.5rem;
+
+                span {
+                    padding: 0.3rem 0.8rem;
+                    background: rgba($primary-light, 0.3);
+                    border-radius: 20px;
+                    font-size: 0.8rem;
+                    color: $text-light;
+                    display: flex;
+                    align-items: center;
+
+                    i {
+                        margin-right: 0.4rem;
+                        color: $accent;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+
+            // Rodapé do card com preço e botão
+            .room-footer {
+                margin-top: auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .room-price {
+                    color: $accent-light;
+                    font-size: 1.4rem;
+                    font-weight: 700;
+
+                    small {
+                        display: block;
+                        font-size: 0.8rem;
+                        color: rgba($text-light, 0.7);
+                        font-weight: 400;
+                    }
+                }
+
+                .btn-view {
+                    background: transparent;
+                    color: $accent;
+                    border: 2px solid $accent;
+                    padding: 0.5rem 1.2rem;
+                    border-radius: var(--border-radius-sm);
+                    font-weight: 600;
+                    text-decoration: none;
+                    transition: all var(--transition-normal);
+
+                    &:hover {
+                        background: $accent;
+                        color: $text-dark;
+                        transform: translateY(-3px);
+                    }
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       CARROSSEL DE QUARTOS
+       (Este estilo é complementar aos definidos em _carrossel.scss)
+    ====================================================== */
+
+    #roomCarousel {
+        // Estilos específicos para o carrossel de quartos que não estão
+        // já definidos no componente genérico de carrossel
+
+        .carousel-indicators {
+            bottom: 20px;
+
+            @include respond-to('small') {
+                bottom: 10px;
+            }
+        }
+    }
+
+    /* ======================================================
+       FILTROS DE QUARTOS
+    ====================================================== */
+
+    .room-filters {
+        margin-bottom: 3rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        button {
+            background: transparent;
+            color: $text-light;
+            border: 1px solid rgba($accent, 0.3);
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+
+            &:hover,
+            &.active {
+                background: $accent;
+                color: $text-dark;
+                border-color: $accent;
+            }
+        }
+
+        @include respond-to('small') {
+            margin-bottom: 2rem;
+
+            button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    }
+}
+
+/* ======================================================
+     PÁGINA DE DETALHES DO QUARTO
+     (Para páginas individuais de quartos)
+  ====================================================== */
+
+.room-detail {
+    padding-top: 8rem;
+
+    .room-gallery {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--border-radius-lg);
+        margin-bottom: 2rem;
+
+        img {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+        }
+    }
+
+    .room-info {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+
+        @include respond-to('medium') {
+            grid-template-columns: 1fr;
+        }
+
+        .room-features {
+            background: rgba($primary-dark, 0.7);
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            height: fit-content;
+
+            h4 {
+                color: $accent;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.8rem;
+                border-bottom: 1px solid rgba($accent, 0.2);
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: 0.8rem;
+                    display: flex;
+                    align-items: center;
+
+                    i {
+                        color: $accent;
+                        margin-right: 1rem;
+                        font-size: 1.2rem;
+                        width: 20px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .booking-form {
+        background: rgba($primary-dark, 0.7);
+        padding: 2rem;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
+
+        h3 {
+            color: $accent;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .price-display {
+            text-align: center;
+            margin-bottom: 1.5rem;
+
+            .price {
+                font-size: 2.5rem;
+                color: $accent;
+                font-weight: 700;
+            }
+
+            small {
+                display: block;
+                color: rgba($text-light, 0.7);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: $text-light;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba($primary, 0.2);
+            border: 1px solid rgba($accent, 0.2);
+            border-radius: var(--border-radius-sm);
+            color: $text-light;
+
+            &:focus {
+                border-color: $accent;
+                outline: none;
+                box-shadow: 0 0 0 2px rgba($accent, 0.2);
+            }
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: $accent;
+            color: $text-dark;
+            border: none;
+            border-radius: var(--border-radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+
+            &:hover {
+                background: $accent-dark;
+                color: $text-light;
+            }
+        }
+    }
+}

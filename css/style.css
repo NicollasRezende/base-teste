@@ -1,0 +1,18 @@
+/* Error: There is no module with the namespace "map".
+ *    ,
+ * 51 |         max-width: map.get(b.$breakpoints, 'xlarge');
+ *    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   scss/layout/_header.scss 51:20  @use
+ *   scss/main.scss 15:1             root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: There is no module with the namespace \"map\".\a    \2577 \a 51 \2502          max-width: map.get(b.$breakpoints, 'xlarge');\a    \2502                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   scss/layout/_header.scss 51:20  @use\a   scss/main.scss 15:1             root stylesheet";
+}

@@ -1,0 +1,172 @@
+@use 'sass:map';
+@use 'variaveis' as v;
+@use 'breakpoints' as b;
+@use 'z-index' as z;
+
+/* ======================================================
+   MIXINS
+   Funções reutilizáveis para melhorar a produtividade
+====================================================== */
+
+// Mixin para breakpoints responsivos
+@mixin respond-to($breakpoint) {
+    @if map.has-key(b.$breakpoints, $breakpoint) {
+        @media screen and (max-width: map.get(b.$breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @warn "O breakpoint '#{$breakpoint}' não existe no mapa b.$breakpoints.";
+    }
+}
+
+// Mixin para layouts flexíveis
+@mixin flex($direction: row, $justify: center, $align: center, $gap: null) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    @if $gap {
+        gap: $gap;
+    }
+}
+
+// Mixin para centralizar com flexbox
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Mixin para layout em grid
+@mixin grid($columns: 1fr, $gap: var(--spacing-md)) {
+    display: grid;
+    grid-template-columns: $columns;
+    gap: $gap;
+}
+
+// Mixin para efeito de elevação no hover
+@mixin hover-lift {
+    transition: transform var(--transition-normal),
+        box-shadow var(--transition-normal);
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+}
+
+// Mixin para efeito hover padrão
+@mixin hover-effect {
+    transition: all 0.3s ease;
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+    }
+}
+
+// Mixin para padding padrão das seções
+@mixin section-padding {
+    padding: 5rem 0;
+}
+
+// Mixin para container principal
+@mixin container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @include respond-to('large') {
+        max-width: b.$container-large;
+    }
+
+    @include respond-to('medium') {
+        max-width: b.$container-medium;
+        padding: 0 1.5rem;
+    }
+
+    @include respond-to('small') {
+        max-width: b.$container-small;
+        padding: 0 1rem;
+    }
+}
+
+// Mixin para efeito de vidro
+@mixin glass-effect {
+    background: rgba(v.$background-dark, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(v.$accent, 0.1);
+    box-shadow: var(--shadow-md);
+}
+
+// Mixin para truncar texto
+@mixin truncate($lines: 1) {
+    @if $lines == 1 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// Mixin para estilização de título com linha decorativa
+@mixin title-decoration {
+    position: relative;
+    padding-bottom: 0.5rem;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: v.$accent;
+        transition: width var(--transition-normal);
+    }
+
+    &:hover::after {
+        width: 80px;
+    }
+}
+
+// Mixin para melhoria de acessibilidade - focus outline
+@mixin focus-outline {
+    &:focus {
+        outline: 2px solid v.$accent;
+        outline-offset: 2px;
+    }
+}
+
+// Mixin para estilo visual dos inputs
+@mixin input-style {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(v.$primary, 0.2);
+    border: 1px solid rgba(v.$accent, 0.2);
+    border-radius: var(--border-radius-md);
+    color: v.$text-light;
+    transition: border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+
+    &::placeholder {
+        color: rgba(v.$text-light, 0.6);
+    }
+
+    &:focus {
+        border-color: v.$accent;
+        box-shadow: 0 0 0 3px rgba(v.$accent, 0.2);
+        outline: none;
+        background: rgba(v.$primary, 0.4);
+    }
+}
+
+// Mixin para animar elementos ao entrar na viewport
+@mixin animate-on-scroll($animation: fadeIn, $duration: 0.5s, $delay: 0s) {
+    opacity: 0;
+    animation: $animation $duration ease forwards;
+    animation-delay: $delay;
+}

@@ -1,0 +1,347 @@
+@use '../abstracts/variaveis' as v;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/z-index' as z;
+@use '../abstracts/breakpoints' as b;
+
+/* ======================================================
+   HEADER E NAVEGAÇÃO
+====================================================== */
+
+.header-main {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: z.z('header');
+    background: rgba(v.$background-dark, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(v.$accent, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+
+    // Estado quando a página é scrollada
+    &.scrolled {
+        padding: 0.2rem 0;
+        background: rgba(v.$background-dark, 0.95);
+        border-bottom: 1px solid rgba(v.$accent, 0.2);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+        .navbar {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .logo {
+            img {
+                height: 45px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    /* ======================================================
+       NAVBAR - Barra de navegação principal
+    ====================================================== */
+
+    .navbar {
+        @include m.flex(row, space-between, center);
+        padding: var(--spacing-md) var(--spacing-lg);
+        max-width: map.get(b.$breakpoints, 'xlarge');
+        margin: 0 auto;
+        position: relative;
+        transition: all var(--transition-normal);
+
+        @include m.respond-to('medium') {
+            padding: var(--spacing-sm) var(--spacing-md);
+        }
+
+        /* ======================================================
+         LOGO - Logo e título do site
+      ====================================================== */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: z.z('navigation') + 1; // Garantir que fique acima do menu móvel
+            transition: all var(--transition-normal);
+
+            img {
+                height: 50px;
+                filter: drop-shadow(0 0 5px rgba(v.$accent, 0.5));
+                transition: all var(--transition-normal);
+            }
+
+            h3 {
+                color: v.$accent;
+                margin: 0;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                transition: all var(--transition-normal);
+
+                span {
+                    color: v.$text-light;
+                    transition: color var(--transition-normal);
+                }
+
+                &:hover span {
+                    color: v.$accent-light;
+                }
+            }
+        }
+
+        /* ======================================================
+         NAV LINKS - Links de navegação principal
+      ====================================================== */
+
+        .nav-links {
+            @include m.flex(row, center, center, var(--spacing-lg));
+            list-style: none;
+            transition: all var(--transition-normal);
+
+            // Versão mobile do menu
+            @include m.respond-to('medium') {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(v.$background-dark, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                z-index: z.z('navigation');
+                transition: right var(--transition-normal) ease;
+
+                &.active {
+                    right: 0;
+                }
+            }
+
+            /* ======================================================
+           NAV ITEMS - Itens individuais do menu
+        ====================================================== */
+
+            li {
+                position: relative;
+
+                // Animação para menu mobile
+                @include m.respond-to('medium') {
+                    opacity: 0;
+                    transform: translateY(20px);
+                    animation: slideUp 0.5s ease forwards;
+
+                    // Loop para atrasar a animação de cada item
+                    @for $i from 1 through 6 {
+                        &:nth-child(#{$i}) {
+                            animation-delay: 0.1s * $i;
+                        }
+                    }
+
+                    &.visible {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                /* ======================================================
+             NAV LINKS - Links dentro dos itens de navegação
+          ====================================================== */
+
+                a {
+                    position: relative;
+                    padding: var(--spacing-xs) var(--spacing-sm);
+                    color: v.$text-light;
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: all var(--transition-normal);
+                    display: inline-block;
+
+                    // Ajuste para dispositivos médios
+                    @include m.respond-to('medium') {
+                        font-size: 1.5rem;
+                        padding: 1rem 2rem;
+                        font-weight: 600;
+                    }
+
+                    // Sublinhado animado no hover
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background: linear-gradient(
+                            to right,
+                            v.$accent-dark,
+                            v.$accent,
+                            v.$accent-dark
+                        );
+                        transform: scaleX(0);
+                        transition: transform var(--transition-normal);
+                        transform-origin: right;
+
+                        @include m.respond-to('medium') {
+                            height: 3px;
+                            bottom: 0.5rem;
+                        }
+                    }
+
+                    &:hover,
+                    &.active {
+                        color: v.$accent;
+                        transform: translateY(-2px);
+
+                        &::after {
+                            transform: scaleX(1);
+                            transform-origin: left;
+                        }
+                    }
+                }
+
+                /* ======================================================
+             BOTÃO RESERVAR - Destaque para CTA principal
+          ====================================================== */
+
+                &.book-now {
+                    margin-left: 1rem;
+
+                    @include m.respond-to('medium') {
+                        margin-left: 0;
+                        margin-top: 1.5rem;
+                    }
+
+                    // Este botão tem seu estilo no arquivo _botoes.scss
+                }
+            }
+        }
+
+        /* ======================================================
+         HAMBURGER - Botão para menu mobile
+      ====================================================== */
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: z.z('navigation') + 1; // Garantir que fique acima do menu móvel
+            padding: 10px;
+            border-radius: 50%;
+            transition: all var(--transition-normal);
+
+            @include m.respond-to('medium') {
+                display: block;
+            }
+
+            &:hover {
+                background: rgba(v.$accent, 0.1);
+            }
+
+            &.active {
+                background: rgba(v.$accent, 0.2);
+            }
+
+            .hamburger-box {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            // Barras do hamburger
+            .hamburger-inner {
+                width: 22px;
+                height: 2px;
+                background-color: v.$accent;
+                border-radius: 3px;
+                position: relative;
+                transition: all 0.3s ease;
+
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 22px;
+                    height: 2px;
+                    background-color: v.$accent;
+                    border-radius: 3px;
+                    transition: all 0.3s ease;
+                }
+
+                &::before {
+                    top: -7px;
+                }
+
+                &::after {
+                    bottom: -7px;
+                }
+            }
+
+            // Estado ativo do hamburger (X)
+            &.active {
+                .hamburger-inner {
+                    background-color: transparent;
+
+                    &::before {
+                        top: 0;
+                        transform: rotate(45deg);
+                    }
+
+                    &::after {
+                        bottom: 0;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       OVERLAY - Fundo escuro para o menu mobile
+    ====================================================== */
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-normal);
+        z-index: z.z('overlay');
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    // Ajustes para dispositivos pequenos
+    @include m.respond-to('small') {
+        .navbar {
+            padding: var(--spacing-xs) var(--spacing-sm);
+
+            .logo {
+                img {
+                    height: 40px;
+                }
+
+                h3 {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}

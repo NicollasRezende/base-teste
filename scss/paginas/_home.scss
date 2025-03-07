@@ -1,0 +1,115 @@
+/* ======================================================
+   SEÇÃO HERO - Banner principal
+====================================================== */
+
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(
+            rgba($background-dark, 0.7),
+            rgba($background-dark, 0.7)
+        ),
+        url('hero-bg.jpg') center/cover no-repeat;
+    @include flex-center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    // Efeito de brilho radial
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at center,
+            rgba($primary-light, 0.2),
+            transparent 70%
+        );
+        pointer-events: none;
+    }
+
+    // Conteúdo da seção hero
+    .hero-content {
+        max-width: 800px;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+        animation: fadeIn 1.5s ease;
+
+        h1 {
+            margin-bottom: 1.5rem;
+            text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+            font-size: 3.5rem;
+
+            span {
+                color: $accent;
+            }
+
+            @include respond-to('large') {
+                font-size: 3rem;
+            }
+
+            @include respond-to('medium') {
+                font-size: 2.5rem;
+            }
+
+            @include respond-to('small') {
+                font-size: 2rem;
+            }
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: $text-light;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+            @include respond-to('medium') {
+                font-size: 1.3rem;
+            }
+
+            @include respond-to('small') {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .btn-primary {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+
+            @include respond-to('small') {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @include respond-to('small') {
+            padding: 1.5rem;
+        }
+    }
+
+    // Responsividade adicional para a seção hero
+    @include respond-to('medium') {
+        background-position: center 30%;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(
+                to top,
+                rgba($background-dark, 0.8),
+                transparent
+            );
+            pointer-events: none;
+        }
+    }
+}

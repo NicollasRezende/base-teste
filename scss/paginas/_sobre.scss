@@ -1,0 +1,370 @@
+/* ======================================================
+   SEÇÃO SOBRE
+   Estilos para a seção "Sobre" do hotel
+====================================================== */
+
+.about-section {
+    @include section-padding;
+    background: linear-gradient(
+        to bottom,
+        $background-dark,
+        rgba($primary-dark, 0.9)
+    );
+    position: relative;
+
+    /* ======================================================
+       EFEITO DE FUNDO
+    ====================================================== */
+
+    // Efeito de gradiente radial
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            ellipse at bottom right,
+            rgba($primary-light, 0.2),
+            transparent 70%
+        );
+        pointer-events: none;
+    }
+
+    /* ======================================================
+       IMAGEM PRINCIPAL
+    ====================================================== */
+
+    .about-image {
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+
+        // Overlay da imagem
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba($background-dark, 0.8),
+                rgba($primary-dark, 0.5)
+            );
+            opacity: 0.7;
+            z-index: 1;
+            transition: opacity var(--transition-normal);
+        }
+
+        &:hover::before {
+            opacity: 0.5;
+        }
+
+        // Efeito de zoom na imagem
+        img {
+            transform: scale(1);
+            transition: transform var(--transition-slow);
+            width: 100%;
+        }
+
+        &:hover img {
+            transform: scale(1.05);
+        }
+
+        // Etiqueta de "Desde XXXX"
+        .about-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: $accent;
+            color: $text-dark;
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--border-radius-sm);
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: var(--shadow-md);
+
+            span {
+                display: block;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            strong {
+                font-size: 1.8rem;
+                line-height: 1.2;
+            }
+        }
+
+        @include respond-to('medium') {
+            margin-bottom: 2rem;
+        }
+    }
+
+    /* ======================================================
+       CONTEÚDO TEXTUAL
+    ====================================================== */
+
+    .about-content {
+        padding: 3rem;
+        background: rgba($background-dark, 0.8);
+        border-radius: var(--border-radius-lg);
+        border-left: 4px solid $accent;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        z-index: 2;
+
+        // Responsividade
+        @include respond-to('medium') {
+            padding: 2rem 1.5rem;
+        }
+
+        @include respond-to('small') {
+            padding: 1.5rem 1rem;
+        }
+
+        // Título principal
+        h2 {
+            margin-bottom: 1.5rem;
+            color: $accent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+            &::after {
+                background: $accent;
+                height: 3px;
+                width: 60px;
+            }
+        }
+
+        // Parágrafos de texto
+        p {
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+            color: $text-light;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+            &:last-of-type {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        // Botão de chamada à ação
+        .btn-primary {
+            margin-top: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        // Lista de destacamentos
+        .about-highlights {
+            margin: 2rem 0;
+
+            ul {
+                list-style: none;
+                padding: 0;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+
+                @include respond-to('small') {
+                    grid-template-columns: 1fr;
+                }
+
+                li {
+                    display: flex;
+                    align-items: center;
+
+                    i {
+                        color: $accent;
+                        margin-right: 0.8rem;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+
+        // Box de missão e visão
+        .mission-vision {
+            margin-top: 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+
+            @include respond-to('small') {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .box {
+                background: rgba($primary, 0.2);
+                padding: 1.5rem;
+                border-radius: var(--border-radius-md);
+                border-top: 3px solid $accent;
+
+                h4 {
+                    color: $accent;
+                    margin-bottom: 1rem;
+                    font-size: 1.3rem;
+                }
+
+                p {
+                    margin-bottom: 0;
+                    font-size: 0.95rem;
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       INVERSÃO DE LAYOUT EM TELAS GRANDES
+    ====================================================== */
+
+    @include respond-to('large') {
+        .row {
+            flex-direction: column-reverse;
+        }
+
+        .about-image {
+            margin-top: 2rem;
+        }
+    }
+
+    /* ======================================================
+       ESTATÍSTICAS DESTACADAS
+    ====================================================== */
+
+    .about-stats {
+        @include container;
+        margin-top: 5rem;
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+
+            @include respond-to('medium') {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @include respond-to('small') {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-item {
+                background: rgba($primary-dark, 0.7);
+                padding: 2rem;
+                text-align: center;
+                border-radius: var(--border-radius-md);
+                border-bottom: 3px solid $accent;
+
+                .stat-value {
+                    font-size: 3rem;
+                    font-weight: 700;
+                    color: $accent;
+                    margin-bottom: 0.5rem;
+                    line-height: 1;
+                    font-family: $font-primary;
+                }
+
+                .stat-label {
+                    color: $text-light;
+                    font-size: 1.1rem;
+                    opacity: 0.9;
+                }
+            }
+        }
+    }
+
+    /* ======================================================
+       EQUIPE
+    ====================================================== */
+
+    .about-team {
+        @include container;
+        margin-top: 5rem;
+
+        h3 {
+            text-align: center;
+            color: $accent;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 60px;
+                height: 3px;
+                background: $accent;
+                margin: 1rem auto 0;
+            }
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+
+            .team-member {
+                text-align: center;
+
+                .member-image {
+                    width: 180px;
+                    height: 180px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    margin: 0 auto 1.5rem;
+                    border: 3px solid $accent;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: transform var(--transition-normal);
+                    }
+
+                    &:hover img {
+                        transform: scale(1.1);
+                    }
+                }
+
+                h4 {
+                    color: $accent;
+                    margin-bottom: 0.3rem;
+                }
+
+                .member-role {
+                    color: rgba($text-light, 0.8);
+                    font-size: 0.9rem;
+                    margin-bottom: 1rem;
+                }
+
+                .member-bio {
+                    font-size: 0.95rem;
+                    margin-bottom: 1rem;
+                }
+
+                .member-social {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+
+                    a {
+                        color: $text-light;
+                        font-size: 1.2rem;
+                        transition: all var(--transition-normal);
+
+                        &:hover {
+                            color: $accent;
+                            transform: translateY(-3px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
